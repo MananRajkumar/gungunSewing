@@ -7,9 +7,9 @@ var config = {
     // database: 'sql12606982'
 
     host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'gungun'
+    user: 'id20655587_gungun',
+    password: '1q!5&9SovB<TWmyV',
+    database: 'id20655587_gungunstore'
 };
 
 // init database
@@ -27,7 +27,7 @@ function RunQuery(sql, callback) {
             }
             conn.release();
             callback(rows);
-            console.log(`Server connected to database ${config.database}`);
+            // console.log(`Server connected to database ${config.database}`);
         });
     });
 }
