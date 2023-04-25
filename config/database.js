@@ -6,10 +6,10 @@ var config = {
     // password: 'AW6jktcgEx',
     // database: 'sql12606982'
 
-    host: 'localhost',
-    user: 'id20655587_gungun',
-    password: '1q!5&9SovB<TWmyV',
-    database: 'id20655587_gungunstore'
+    host: 'sql.freedb.tech',
+    user: 'freedb_id20655587_gungun',
+    password: '$VJ93xCtM@JWtB*',
+    database: 'freedb_id20655587_gungunstore'
 };
 
 // init database
