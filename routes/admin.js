@@ -32,11 +32,11 @@ router.route("/cat").get(isAdmin, function (req, res, next) {
   var sqlStr =
     "\
         SELECT *\
-        FROM Categories";
+        FROM categories";
 
   RunQuery(sqlStr, function (categories) {
     var contextDict = {
-      title: "Admin - Categories",
+      title: "Admin - categories",
       categories: categories,
       customer: req.user,
     };
@@ -51,7 +51,7 @@ router
     var sqlStr =
       "\
         SELECT *\
-        FROM Categories\
+        FROM categories\
         WHERE CategoryID = " + req.params.id;
 
     RunQuery(sqlStr, function (category) {
@@ -68,7 +68,7 @@ router
   .post(isAdmin, function (req, res, next) {
     var sqlStr =
       "\
-        UPDATE Categories\
+        UPDATE categories\
         SET CategoryName = '" +
       req.body.name +
       "', \
@@ -89,7 +89,7 @@ router
 router.route("/cat/:id/delete").post(isAdmin, function (req, res, next) {
   sqlStr =
     "\
-            DELETE FROM Categories\
+            DELETE FROM categories\
             WHERE CategoryID = " + req.params.id;
 
   RunQuery(sqlStr, function (result) {
@@ -111,7 +111,7 @@ router
   .post(isAdmin, function (req, res, next) {
     var sqlStr =
       "\
-        INSERT INTO Categories\
+        INSERT INTO categories\
         VALUES (null, '" +
       req.body.name +
       "', \
@@ -133,10 +133,10 @@ router
 router.route("/products").get(isAdmin, function (req, res, next) {
   var sqlStr =
     "\
-                    SELECT Products.*, Categories.CategoryName\
+                    SELECT Products.*, categories.CategoryName\
                     FROM Products\
-                    INNER JOIN Categories\
-                    ON Products.CategoryID = Categories.CategoryID";
+                    INNER JOIN categories\
+                    ON Products.CategoryID = categories.CategoryID";
 
   RunQuery(sqlStr, function (products) {
     var contextDict = {
@@ -154,17 +154,17 @@ router
   .get(isAdmin, function (req, res, next) {
     var sqlStr =
       "\
-                    SELECT Products.*, Categories.CategoryName\
+                    SELECT Products.*, categories.CategoryName\
                     FROM Products\
-                    INNER JOIN Categories\
-                    ON Products.CategoryID = Categories.CategoryID\
+                    INNER JOIN categories\
+                    ON Products.CategoryID = categories.CategoryID\
                     WHERE ProductID = " + req.params.id;
 
     RunQuery(sqlStr, function (product) {
       sqlStr =
         "\
                 SELECT *\
-                FROM Categories";
+                FROM categories";
 
       RunQuery(sqlStr, function (categories) {
         var contextDict = {
@@ -232,7 +232,7 @@ router
     var sqlStr =
       "\
             SELECT *\
-            FROM Categories";
+            FROM categories";
 
     RunQuery(sqlStr, function (categories) {
       var contextDict = {
@@ -346,10 +346,10 @@ router.route("/orders/:id").get(isAdmin, function (req, res) {
                     SELECT *\
                     FROM `Order Details`\
                     INNER JOIN (\
-                        SELECT Products.*, Categories.CategorySlug\
+                        SELECT Products.*, categories.CategorySlug\
                         FROM Products\
-                        INNER JOIN Categories\
-                        ON Products.CategoryID = Categories.CategoryID\
+                        INNER JOIN categories\
+                        ON Products.CategoryID = categories.CategoryID\
                     ) `Table`\
                     ON `Order Details`.ProductID = `Table`.ProductID\
                     WHERE OrderID = " + order[0].OrderID;
@@ -395,10 +395,10 @@ router
                     SELECT *\
                     FROM `Order Details`\
                     INNER JOIN (\
-                        SELECT Products.*, Categories.CategorySlug\
+                        SELECT Products.*, categories.CategorySlug\
                         FROM Products\
-                        INNER JOIN Categories\
-                        ON Products.CategoryID = Categories.CategoryID\
+                        INNER JOIN categories\
+                        ON Products.CategoryID = categories.CategoryID\
                     ) `Table`\
                     ON `Order Details`.ProductID = `Table`.ProductID\
                     WHERE OrderID = " + order[0].OrderID;
