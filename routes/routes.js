@@ -16,10 +16,10 @@ router.all("/", function (req, res, next) {
     RunQuery(sqlStr, function (categories) {
         sqlStr =
             "\
-            SELECT Products.*, categories.CategoryName, categories.CategorySlug\
-            FROM Products\
+            SELECT products.*, categories.CategoryName, categories.CategorySlug\
+            FROM products\
             INNER JOIN categories\
-            ON Products.CategoryID = categories.CategoryID\
+            ON products.CategoryID = categories.CategoryID\
             WHERE Feature = 1";
 
         RunQuery(sqlStr, function (products) {
@@ -27,7 +27,7 @@ router.all("/", function (req, res, next) {
                 currentUrl: "/",
                 title: "Home",
                 categories: categories,
-                featProducts: products,
+                featproducts: products,
                 customer: req.user,
             };
 
@@ -56,16 +56,16 @@ router.route("/cat/").all(function (req, res, next) {
     });
 });
 
-/* Route Category Products page. */
+/* Route Category products page. */
 // router.route("/cat/:catSlug").all(function (req, res, next) {
 
 //     if (req.params.catSlug == "all") {
 //         var selectQuery =
 //             "\
-//                 SELECT Products.*, categories.CategoryName, categories.CategorySlug\
-//                 FROM Products\
+//                 SELECT products.*, categories.CategoryName, categories.CategorySlug\
+//                 FROM products\
 //                 INNER JOIN categories\
-//                 ON Products.CategoryID = categories.CategoryID";
+//                 ON products.CategoryID = categories.CategoryID";
 
 //         RunQuery(selectQuery, function (products) {
 //             selectQuery =
@@ -81,16 +81,16 @@ router.route("/cat/").all(function (req, res, next) {
 //                     customer: req.user,
 //                 };
 
-//                 res.render("categoryProducts", contextDict);
+//                 res.render("categoryproducts", contextDict);
 //             });
 //         });
 //     } else {
 //         var sqlStr =
 //             "\
-//                 SELECT Products.*, categories.CategoryName, categories.CategorySlug\
-//                 FROM Products\
+//                 SELECT products.*, categories.CategoryName, categories.CategorySlug\
+//                 FROM products\
 //                 INNER JOIN categories\
-//                 ON Products.CategoryID = categories.CategoryID\
+//                 ON products.CategoryID = categories.CategoryID\
 //                 WHERE categories.CategorySlug = '" +
 //             req.params.catSlug +
 //             "'";
@@ -114,7 +114,7 @@ router.route("/cat/").all(function (req, res, next) {
 //                     res.render('/cat/all')
 //                 }else{
 
-//                 res.render("categoryProducts", contextDict);}
+//                 res.render("categoryproducts", contextDict);}
 //             });
 //         });
 //     }
@@ -125,10 +125,10 @@ router.route("/cat/").all(function (req, res, next) {
 router.route("/cat/:catSlug").all(function (req, res, next) {
     if (req.params.catSlug == "all") {
         var selectQuery = "\
-            SELECT Products.*, categories.CategoryName, categories.CategorySlug\
-            FROM Products\
+            SELECT products.*, categories.CategoryName, categories.CategorySlug\
+            FROM products\
             INNER JOIN categories\
-            ON Products.CategoryID = categories.CategoryID";
+            ON products.CategoryID = categories.CategoryID";
 
         RunQuery(selectQuery, function (products) {
             var selectQuery = "\
@@ -143,15 +143,15 @@ router.route("/cat/:catSlug").all(function (req, res, next) {
                     customer: req.user,
                 };
 
-                res.render("categoryProducts", contextDict);
+                res.render("categoryproducts", contextDict);
             });
         });
     } else {
         var sqlStr = "\
-            SELECT Products.*, categories.CategoryName, categories.CategorySlug\
-            FROM Products\
+            SELECT products.*, categories.CategoryName, categories.CategorySlug\
+            FROM products\
             INNER JOIN categories\
-            ON Products.CategoryID = categories.CategoryID\
+            ON products.CategoryID = categories.CategoryID\
             WHERE categories.CategorySlug = '" + req.params.catSlug + "'";
 
         RunQuery(sqlStr, function (products) {
@@ -170,7 +170,7 @@ router.route("/cat/:catSlug").all(function (req, res, next) {
                         categories: categories,
                         customer: req.user,
                     };
-                    res.render("categoryProducts", contextDict);
+                    res.render("categoryproducts", contextDict);
                 }
             });
         });
@@ -188,8 +188,8 @@ router.route("/cat/:catSlug/:prodSlug").all(function (req, res, next) {
     var sqlStr =
         "\
         SELECT *\
-        FROM Products\
-        WHERE ProductSlug = '" +
+        FROM products\
+        WHERE productslug = '" +
         req.params.prodSlug +
         "'";
 
