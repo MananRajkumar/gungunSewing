@@ -288,7 +288,7 @@ router
 
     var sqlStr = `INSERT INTO products VALUES (null, '${req.body.name}', ${req.body.category
       }, ${req.body.price}, ${req.body.unit}, '${req.body.description}', ${req.body.year
-      }, '${slug(req.body.name)}.png', '${slug(req.body.name)}', ${req.body.feature
+      }, '${slug(req.body.name)}', '${slug(req.body.name)}', ${req.body.feature
       }, '${req.body.Image1}', '${req.body.Image2
       }', '${req.body.description1.replace(/'/g, "'")}', '${req.body.edition}', ${req.body.numberofpages
       }, '${req.body.language}')`;
