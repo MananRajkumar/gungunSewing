@@ -123,7 +123,7 @@ router.route('/review')
 router.route('/order')
     .get(function (req, res, next) {
         var insertQuery = '\
-            INSERT INTO Orders\
+            INSERT INTO orders\
             VALUES(null, ' +
             req.user.UserID + ', ' +
             req.session.address.AddressID + ', ' +
@@ -139,7 +139,7 @@ router.route('/order')
                 if (req.session.cart[item].quantity > 0) {
 
                     insertQuery = '\
-                        INSERT INTO `Order Details`\
+                        INSERT INTO `order details`\
                         VALUES(' +
                         rows.insertId + ', ' +
                         req.session.cart[item].ProductID + ', ' +
@@ -162,7 +162,7 @@ router.route('/order')
             //get order info
             var selectQuery = '\
             SELECT *\
-            FROM Orders\
+            FROM orders\
             WHERE OrderID = ' + rows.insertId;
 
             RunQuery(selectQuery, function (order) {
@@ -176,14 +176,14 @@ router.route('/order')
                     //get order info
                     selectQuery = '\
                     SELECT *\
-                    FROM `Order Details`\
+                    FROM `order details`\
                     INNER JOIN (\
                         SELECT Products.*, Categories.CategorySlug\
                         FROM Products\
                         INNER JOIN Categories\
                         ON Products.CategoryID = Categories.CategoryID\
                     ) `Table`\
-                    ON `Order Details`.ProductID = `Table`.ProductID\
+                    ON `order details`.ProductID = `Table`.ProductID\
                     WHERE OrderID = ' + order[0].OrderID;
 
                     RunQuery(selectQuery, function (products) {
@@ -229,29 +229,13 @@ router.route('/order')
     });
 
 
-
-
-
-
-
-
-
-
-// router.route('/order')
-// .get(function (req, res, next) {
-//     // existing code to process form data and insert order into database
-
-//     // redirect to new page with order ID as parameter
-
-// });
-
 router.route('/confirm/:id')
     .get(function (req, res, next) {
         // retrieve order details using ID passed in URL
         var orderId = req.params.id;
         var selectQuery = '\
             SELECT *\
-            FROM Orders\
+            FROM orders\
             WHERE OrderID = ' + orderId;
 
         RunQuery(selectQuery, function (order) {
@@ -265,14 +249,14 @@ router.route('/confirm/:id')
                 //get order info
                 selectQuery = '\
                 SELECT *\
-                FROM `Order Details`\
+                FROM `order details`\
                 INNER JOIN (\
                     SELECT Products.*, Categories.CategorySlug\
                     FROM Products\
                     INNER JOIN Categories\
                     ON Products.CategoryID = Categories.CategoryID\
                 ) `Table`\
-                ON `Order Details`.ProductID = `Table`.ProductID\
+                ON `order details`.ProductID = `Table`.ProductID\
                 WHERE OrderID = ' + order[0].OrderID;
 
                 RunQuery(selectQuery, function (products) {
@@ -304,20 +288,6 @@ router.route('/confirm/:id')
             });
         });
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

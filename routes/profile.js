@@ -132,7 +132,7 @@ router.route('/:username/orders/:id')
             //get delivery info
             selectQuery = '\
                 SELECT *\
-                FROM Addresses\
+                FROM addresses\
                 WHERE AddressID = ' + order[0].AddressID;
 
             RunQuery(selectQuery, function (address) {
@@ -172,7 +172,7 @@ router.route('/:username/addresses')
 
         var selectQuery = '\
             SELECT *\
-            FROM Addresses\
+            FROM addresses\
             WHERE UserID = ' + req.user.UserID;
 
         RunQuery(selectQuery, function (addresses) {
@@ -189,7 +189,7 @@ router.route('/:username/addresses/:id/edit')
 
         var selectQuery = '\
             SELECT *\
-            FROM Addresses\
+            FROM addresses\
             WHERE AddressID = ' + req.params.id;
 
         RunQuery(selectQuery, function (address) {
@@ -205,7 +205,7 @@ router.route('/:username/addresses/:id/edit')
         var form = req.body;
 
         var updateQuery = '\
-                UPDATE Addresses\
+                UPDATE addresses\
                 SET Fullname = \'' + form.fullName + '\', \
                     StreetAddress = \'' + form.streetAddress + '\', \
                     PostCode = \'' + form.postcode + '\', \
@@ -223,7 +223,7 @@ router.route('/:username/addresses/:id/delete')
     .post(isLoggedIn, function (req, res, next) {
 
         var sqlStr = '\
-            DELETE FROM Addresses\
+            DELETE FROM addresses\
             WHERE AddressID = ' + req.params.id;
 
         RunQuery(sqlStr, function (result) {
@@ -243,7 +243,7 @@ router.route('/:username/addresses/add')
         var form = req.body;
 
         var insertQuery = '\
-                INSERT INTO Addresses\
+                INSERT INTO addresses\
                 VALUES (null, ' + req.user.UserID + ', \
                     \'' + form.fullName + '\', \
                     \'' + form.streetAddress + '\', \

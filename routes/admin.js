@@ -133,14 +133,14 @@ router
 router.route("/products").get(isAdmin, function (req, res, next) {
   var sqlStr =
     "\
-                    SELECT Products.*, categories.CategoryName\
-                    FROM Products\
+                    SELECT products.*, categories.CategoryName\
+                    FROM products\
                     INNER JOIN categories\
-                    ON Products.CategoryID = categories.CategoryID";
+                    ON products.CategoryID = categories.CategoryID";
 
   RunQuery(sqlStr, function (products) {
     var contextDict = {
-      title: "Admin - Products",
+      title: "Admin - products",
       products: products,
       customer: req.user,
     };
@@ -154,10 +154,10 @@ router
   .get(isAdmin, function (req, res, next) {
     var sqlStr =
       "\
-                    SELECT Products.*, categories.CategoryName\
-                    FROM Products\
+                    SELECT products.*, categories.CategoryName\
+                    FROM products\
                     INNER JOIN categories\
-                    ON Products.CategoryID = categories.CategoryID\
+                    ON products.CategoryID = categories.CategoryID\
                     WHERE ProductID = " + req.params.id;
 
     RunQuery(sqlStr, function (product) {
@@ -182,7 +182,7 @@ router
   .post(isAdmin, function (req, res, next) {
     var sqlStr =
       "\
-        UPDATE Products\
+        UPDATE products\
         SET ProductName = '" +
       req.body.name +
       "', \
@@ -201,7 +201,7 @@ router
             ManufactureYear = " +
       req.body.year +
       ", \
-            ProductSlug = '" +
+            productslug = '" +
       slug(req.body.name) +
       "', " +
       "Feature = " +
@@ -218,7 +218,7 @@ router
 router.route("/products/:id/delete").post(isAdmin, function (req, res, next) {
   var sqlStr =
     "\
-            DELETE FROM Products\
+            DELETE FROM products\
             WHERE ProductID = " + req.params.id;
 
   RunQuery(sqlStr, function (result) {
@@ -247,7 +247,7 @@ router
 
   // .post(isAdmin, function (req, res, next) {
   //     var sqlStr = '\
-  //         INSERT INTO Products\
+  //         INSERT INTO products\
   //         VALUES (null, \'' + req.body.name + '\', '
   //             + req.body.category + ', '
   //             + req.body.price + ', '
@@ -262,7 +262,7 @@ router
 
   .post(isAdmin, function (req, res, next) {
     // var sqlStr =
-    //     "INSERT INTO Products VALUES (null, '" +
+    //     "INSERT INTO products VALUES (null, '" +
     //     req.body.name +
     //     "', " +
     //     req.body.category +
@@ -286,7 +286,7 @@ router
     //     req.body.Image2 +
     //     "')";
 
-    var sqlStr = `INSERT INTO Products VALUES (null, '${req.body.name}', ${req.body.category
+    var sqlStr = `INSERT INTO products VALUES (null, '${req.body.name}', ${req.body.category
       }, ${req.body.price}, ${req.body.unit}, '${req.body.description}', ${req.body.year
       }, '${slug(req.body.name)}.png', '${slug(req.body.name)}', ${req.body.feature
       }, '${req.body.Image1}', '${req.body.Image2
@@ -302,11 +302,11 @@ router.route("/orders").get(isAdmin, function (req, res) {
   var selectQuery =
     "\
             SELECT *\
-            FROM Orders";
+            FROM orders";
 
   RunQuery(selectQuery, function (orders) {
     var contextDict = {
-      title: "Admin - Orders",
+      title: "Admin - orders",
       customer: req.user,
       orders: orders,
     };
@@ -320,7 +320,7 @@ router.route("/orders/:id").get(isAdmin, function (req, res) {
   var selectQuery =
     "\
             SELECT *\
-            FROM Orders\
+            FROM orders\
             WHERE OrderID = " + req.params.id;
 
   RunQuery(selectQuery, function (order) {
@@ -328,7 +328,7 @@ router.route("/orders/:id").get(isAdmin, function (req, res) {
     selectQuery =
       "\
             SELECT *\
-            FROM Users\
+            FROM users\
             WHERE UserID = " + order[0].UserID;
 
     RunQuery(selectQuery, function (orderCustomer) {
@@ -336,7 +336,7 @@ router.route("/orders/:id").get(isAdmin, function (req, res) {
       selectQuery =
         "\
                 SELECT *\
-                FROM Addresses\
+                FROM addresses\
                 WHERE AddressID = " + order[0].AddressID;
 
       RunQuery(selectQuery, function (address) {
@@ -344,21 +344,21 @@ router.route("/orders/:id").get(isAdmin, function (req, res) {
         selectQuery =
           "\
                     SELECT *\
-                    FROM `Order Details`\
+                    FROM `order details`\
                     INNER JOIN (\
-                        SELECT Products.*, categories.CategorySlug\
-                        FROM Products\
+                        SELECT products.*, categories.CategorySlug\
+                        FROM products\
                         INNER JOIN categories\
-                        ON Products.CategoryID = categories.CategoryID\
+                        ON products.CategoryID = categories.CategoryID\
                     ) `Table`\
-                    ON `Order Details`.ProductID = `Table`.ProductID\
+                    ON `order details`.ProductID = `Table`.ProductID\
                     WHERE OrderID = " + order[0].OrderID;
 
         RunQuery(selectQuery, function (products) {
           //get order info
 
           var contextDict = {
-            title: "Admin - Orders",
+            title: "Admin - orders",
             customer: req.user,
             order: order[0],
             orderCustomer: orderCustomer[0],
@@ -379,28 +379,28 @@ router
     var selectQuery =
       "\
             SELECT *\
-            FROM Orders\
+            FROM orders\
             WHERE OrderID = " + req.params.id;
 
     RunQuery(selectQuery, function (order) {
       selectQuery =
         "\
                 SELECT *\
-                FROM Addresses\
+                FROM addresses\
                 WHERE AddressID = " + order[0].AddressID;
 
       RunQuery(selectQuery, function (address) {
         selectQuery =
           "\
                     SELECT *\
-                    FROM `Order Details`\
+                    FROM `order details`\
                     INNER JOIN (\
-                        SELECT Products.*, categories.CategorySlug\
-                        FROM Products\
+                        SELECT products.*, categories.CategorySlug\
+                        FROM products\
                         INNER JOIN categories\
-                        ON Products.CategoryID = categories.CategoryID\
+                        ON products.CategoryID = categories.CategoryID\
                     ) `Table`\
-                    ON `Order Details`.ProductID = `Table`.ProductID\
+                    ON `order details`.ProductID = `Table`.ProductID\
                     WHERE OrderID = " + order[0].OrderID;
 
         RunQuery(selectQuery, function (products) {
@@ -421,7 +421,7 @@ router
   .post(isAdmin, function (req, res, next) {
     var sqlStr =
       "\
-        UPDATE Orders\
+        UPDATE orders\
         SET Status = '" +
       req.body.status +
       "' \
@@ -437,7 +437,7 @@ router.route("/customers").get(isAdmin, function (req, res) {
   var selectQuery =
     "\
             SELECT *\
-            FROM Users";
+            FROM users";
 
   RunQuery(selectQuery, function (customers) {
     var contextDict = {
@@ -453,7 +453,7 @@ router.route("/customers").get(isAdmin, function (req, res) {
 router.route("/customers/:id/makeAdmin").post(isAdmin, function (req, res) {
   var updateQuery =
     "\
-            UPDATE Users\
+            UPDATE users\
             SET Admin = 1\
             WHERE UserID = " + req.params.id;
 
@@ -465,7 +465,7 @@ router.route("/customers/:id/makeAdmin").post(isAdmin, function (req, res) {
 router.route("/customers/:id/removeAdmin").post(isAdmin, function (req, res) {
   var updateQuery =
     "\
-            UPDATE Users\
+            UPDATE users\
             SET Admin = 0\
             WHERE UserID = " + req.params.id;
 
@@ -477,7 +477,7 @@ router.route("/customers/:id/removeAdmin").post(isAdmin, function (req, res) {
 router.route("/customers/:id/delete").post(isAdmin, function (req, res) {
   var deleteQuery =
     "\
-            DELETE FROM Users\
+            DELETE FROM users\
             WHERE UserID = " + req.params.id;
 
   RunQuery(deleteQuery, function (result) {

@@ -56,72 +56,6 @@ router.route("/cat/").all(function (req, res, next) {
     });
 });
 
-/* Route Category products page. */
-// router.route("/cat/:catSlug").all(function (req, res, next) {
-
-//     if (req.params.catSlug == "all") {
-//         var selectQuery =
-//             "\
-//                 SELECT products.*, categories.CategoryName, categories.CategorySlug\
-//                 FROM products\
-//                 INNER JOIN categories\
-//                 ON products.CategoryID = categories.CategoryID";
-
-//         RunQuery(selectQuery, function (products) {
-//             selectQuery =
-//                 "\
-//                 SELECT *\
-//                 FROM categories";
-
-//             RunQuery(selectQuery, function (categories) {
-//                 var contextDict = {
-//                     title: "All products",
-//                     products: products,
-//                     categories: categories,
-//                     customer: req.user,
-//                 };
-
-//                 res.render("categoryproducts", contextDict);
-//             });
-//         });
-//     } else {
-//         var sqlStr =
-//             "\
-//                 SELECT products.*, categories.CategoryName, categories.CategorySlug\
-//                 FROM products\
-//                 INNER JOIN categories\
-//                 ON products.CategoryID = categories.CategoryID\
-//                 WHERE categories.CategorySlug = '" +
-//             req.params.catSlug +
-//             "'";
-//             // console.log(products);
-//         RunQuery(sqlStr, function (products) {
-//             console.log(products == undefined);
-//             sqlStr =
-//                 "\
-//                 SELECT *\
-//                 FROM categories";
-
-//             RunQuery(sqlStr, function (categories) {
-//                 var contextDict = {
-//                     title: products[0].CategoryName,
-//                     products: products,
-//                     categories: categories,
-//                     customer: req.user,
-//                 };
-//                 // console.log(products)
-//                 if(products.length === 0) {
-//                     res.render('/cat/all')
-//                 }else{
-
-//                 res.render("categoryproducts", contextDict);}
-//             });
-//         });
-//     }
-// });
-
-
-
 router.route("/cat/:catSlug").all(function (req, res, next) {
     if (req.params.catSlug == "all") {
         var selectQuery = "\
@@ -201,19 +135,6 @@ router.route("/cat/:catSlug/:prodSlug").all(function (req, res, next) {
         };
 
         res.render("productDetail", contextDict);
-    });
-});
-
-router.route("/subscribe").post(function (req, res, next) {
-    var sqlStr =
-        "\
-        INSERT INTO Subscribers\
-        VALUES ('" +
-        req.body.email +
-        "')";
-
-    RunQuery(sqlStr, function (result) {
-        res.redirect("/");
     });
 });
 
