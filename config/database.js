@@ -1,11 +1,6 @@
 // database module
 var mysql = require('mysql');
 var config = {
-    // host: 'sql12.freesqldatabase.com',
-    // user: 'sql12606982',
-    // password: 'AW6jktcgEx',
-    // database: 'sql12606982'
-
     host: 'sql.freedb.tech',
     user: 'freedb_id20655587_gungun',
     password: '$VJ93xCtM@JWtB*',

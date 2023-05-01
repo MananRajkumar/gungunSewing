@@ -123,7 +123,7 @@ router
       "', \
             '" +
       slug(req.body.name) +
-      ".png')";
+      "')";
 
     RunQuery(sqlStr, function (category) {
       res.redirect("/admin/cat");
