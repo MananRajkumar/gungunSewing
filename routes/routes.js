@@ -77,7 +77,7 @@ router.route("/cat/:catSlug").all(function (req, res, next) {
                     customer: req.user,
                 };
 
-                res.render("categoryproducts", contextDict);
+                res.render("categoryProducts", contextDict);
             });
         });
     } else {
@@ -104,7 +104,7 @@ router.route("/cat/:catSlug").all(function (req, res, next) {
                         categories: categories,
                         customer: req.user,
                     };
-                    res.render("categoryproducts", contextDict);
+                    res.render("categoryProducts", contextDict);
                 }
             });
         });
