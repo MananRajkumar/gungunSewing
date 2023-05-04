@@ -14,18 +14,24 @@ a {
 }
 
 nav{
-  width: 95%;
-  margin: auto;
-  margin-top: 10px;
-  border-radius: 25px;
+  /* min-height: 75% !important; */
+  color: #1d1d1f !important;
+}
+
+nav{
+  width: 100%;
+  /* margin: auto; */
+  /* margin-top: 10px; */
+  /* border-radius: 25px; */
   background-color: #1d1d1f; 
-  z-index: 2;
+  /* position:fixed !important; */
+  /* z-index: 2; */
   color: white;
 }
 
-nav:hover{
+/* nav:hover{
   background-color: black !important;
-}
+} */
 
 .nav-inp{
   width: 40vw !important;
@@ -194,3 +200,12 @@ a {
   width: 100% !important; 
   align-items: right;
 }
+
+.card{
+  overflow: auto;
+}
+
+.rigth-hand-side-card {
+  min-height: 70vh !important;
+}
+
