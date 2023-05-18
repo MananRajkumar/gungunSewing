@@ -27,7 +27,7 @@ app.locals.pretty = true;
     // setup favicon if needed
 app.use(favicon(path.join(__dirname, 'public', '/img/ico/favicon.ico')));
     // log every request to the console
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
     // csrf token init
 var csrfProtection = csrf({ cookie: true });
     // get info from html forms

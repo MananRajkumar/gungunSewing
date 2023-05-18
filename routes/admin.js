@@ -180,38 +180,92 @@ router
   })
 
   .post(isAdmin, function (req, res, next) {
+    // var sqlStr =
+    //   "\
+    //     UPDATE products\
+    //     SET ProductName = '" +
+    //   req.body.name +
+    //   "', \
+    //         CategoryID = " +
+    //   req.body.category +
+    //   ", \
+    //         ProductPrice = " +
+    //   req.body.price +
+    //   ", \
+    //         UnitsInStock = " +
+    //   req.body.unit +
+    //   ", \
+    //         Description = '" +
+    //   req.body.description +
+    //   "', \
+    //         ManufactureYear = " +
+    //   req.body.year +
+    //   ", \
+    //         productslug = '" +
+    //   slug(req.body.name) +
+    //   "', " +
+    //   "Feature = " +
+    //   req.body.feature +
+    //   " \
+    //     WHERE ProductID = " +
+    //   req.params.id;
+
+    const {name, category, price, unit, description, year, image, Image1, Image2, description1, edition, numberofpages, language, feature} = req.body;
+
     var sqlStr =
       "\
-        UPDATE products\
-        SET ProductName = '" +
-      req.body.name +
+    UPDATE products\
+    SET ProductName = '" +
+      name +
       "', \
-            CategoryID = " +
-      req.body.category +
+        CategoryID = " +
+      category +
       ", \
-            ProductPrice = " +
-      req.body.price +
+        ProductPrice = " +
+      price +
       ", \
-            UnitsInStock = " +
-      req.body.unit +
+        UnitsInStock = " +
+      unit +
       ", \
-            Description = '" +
-      req.body.description +
+        Description = '" +
+      description +
       "', \
-            ManufactureYear = " +
-      req.body.year +
+        ManufactureYear = " +
+      year +
       ", \
-            productslug = '" +
-      slug(req.body.name) +
+        Image = '" +
+      image + // new parameter
+      "', \
+        Image1 = '" +
+      Image1 + // new parameter
+      "', \
+        Image2 = '" +
+      Image2 + // new parameter
+      "', \
+        description1 = '" +
+      description1 + // new parameter
+      "', \
+        Edition = '" +
+      edition + // new parameter
+      "', \
+        numberofpages = '" +
+      numberofpages + // new parameter
+      "', \
+        language = '" +
+      language + // new parameter
+      "', \
+        productslug = '" +
+      slug(name) +
       "', " +
       "Feature = " +
-      req.body.feature +
+      feature +
       " \
-        WHERE ProductID = " +
+    WHERE ProductID = " +
       req.params.id;
 
-    RunQuery(sqlStr, function (category) {
-      res.status(200).redirect("/admin/products");
+
+    RunQuery(sqlStr, function (categories) {
+      res.status(200).redirect('/admin/products');
     });
   });
 

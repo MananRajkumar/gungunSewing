@@ -52,7 +52,7 @@ router.route("/cat/").all(function (req, res, next) {
             customer: req.user,
         };
 
-        res.render("categories", contextDict);
+        res.render("categoryProducts", contextDict);
     });
 });
 
@@ -127,13 +127,13 @@ router.route("/cat/:catSlug/:prodSlug").all(function (req, res, next) {
         req.params.prodSlug +
         "'";
 
-    RunQuery(sqlStr, function (product) {
+    RunQuery(sqlStr, function (products) {
         var contextDict = {
-            title: product[0].ProductName,
-            product: product[0],
+            // title: products[0].ProductName,
+            product: products[0],
             customer: req.user,
         };
-
+        console.log(products);
         res.render("productDetail", contextDict);
     });
 });
