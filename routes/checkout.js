@@ -146,7 +146,7 @@ router.route('/order')
                         req.session.cart[item].quantity + ', ' +
                         req.session.cart[item].productTotal + ');';
 
-                    updateQuery = 'UPDATE Products\
+                    updateQuery = 'UPDATE products\
                             SET UnitsInStock = (UnitsInStock - ' + req.session.cart[item].quantity +
                         ') WHERE ProductID = ' + req.session.cart[item].ProductID;
 
@@ -178,10 +178,10 @@ router.route('/order')
                     SELECT *\
                     FROM `order details`\
                     INNER JOIN (\
-                        SELECT Products.*, Categories.CategorySlug\
-                        FROM Products\
-                        INNER JOIN Categories\
-                        ON Products.CategoryID = Categories.CategoryID\
+                        SELECT products.*, categories.CategorySlug\
+                        FROM products\
+                        INNER JOIN categories\
+                        ON products.CategoryID = categories.CategoryID\
                     ) `Table`\
                     ON `order details`.ProductID = `Table`.ProductID\
                     WHERE OrderID = ' + order[0].OrderID;
@@ -251,10 +251,10 @@ router.route('/confirm/:id')
                 SELECT *\
                 FROM `order details`\
                 INNER JOIN (\
-                    SELECT Products.*, Categories.CategorySlug\
-                    FROM Products\
-                    INNER JOIN Categories\
-                    ON Products.CategoryID = Categories.CategoryID\
+                    SELECT products.*, categories.CategorySlug\
+                    FROM products\
+                    INNER JOIN categories\
+                    ON products.CategoryID = categories.CategoryID\
                 ) `Table`\
                 ON `order details`.ProductID = `Table`.ProductID\
                 WHERE OrderID = ' + order[0].OrderID;
