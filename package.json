@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --inspect index.js",
-    "build": "npm install"
+    "build": "npm install",
+    "prepare": "npm run snyk-protect",
+    "snyk-protect": "snyk-protect"
   },
   "dependencies": {
     "bcrypt-nodejs": "~0.0.3",
@@ -26,8 +28,10 @@
     "passport": "~0.3.2",
     "passport-local": "~1.0.0",
     "serve-favicon": "~2.3.0",
-    "slug": "~0.9.1"
+    "slug": "~0.9.1",
+    "@snyk/protect": "latest"
   },
   "author": "Spider Web Solutions",
-  "license": "ISC"
+  "license": "ISC",
+  "snyk": true
 }
