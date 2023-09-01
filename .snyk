@@ -1,0 +1,86 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.25.1
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:ms:20170412':
+    - cloudinary > proxy-agent > debug > ms:
+        patched: '2023-09-01T19:37:56.945Z'
+        id: 'npm:ms:20170412'
+        path: cloudinary > proxy-agent > debug > ms
+    - cloudinary > proxy-agent > agent-base > debug > ms:
+        patched: '2023-09-01T19:37:56.945Z'
+        id: 'npm:ms:20170412'
+        path: cloudinary > proxy-agent > agent-base > debug > ms
+    - cloudinary > proxy-agent > http-proxy-agent > debug > ms:
+        patched: '2023-09-01T19:37:56.945Z'
+        id: 'npm:ms:20170412'
+        path: cloudinary > proxy-agent > http-proxy-agent > debug > ms
+    - cloudinary > proxy-agent > https-proxy-agent > debug > ms:
+        patched: '2023-09-01T19:37:56.945Z'
+        id: 'npm:ms:20170412'
+        path: cloudinary > proxy-agent > https-proxy-agent > debug > ms
+    - cloudinary > proxy-agent > socks-proxy-agent > debug > ms:
+        patched: '2023-09-01T19:37:56.945Z'
+        id: 'npm:ms:20170412'
+        path: cloudinary > proxy-agent > socks-proxy-agent > debug > ms
+    - cloudinary > proxy-agent > pac-proxy-agent > debug > ms:
+        patched: '2023-09-01T19:37:56.945Z'
+        id: 'npm:ms:20170412'
+        path: cloudinary > proxy-agent > pac-proxy-agent > debug > ms
+    - cloudinary > proxy-agent > http-proxy-agent > agent-base > debug > ms:
+        patched: '2023-09-01T19:37:56.945Z'
+        id: 'npm:ms:20170412'
+        path: cloudinary > proxy-agent > http-proxy-agent > agent-base > debug > ms
+    - cloudinary > proxy-agent > https-proxy-agent > agent-base > debug > ms:
+        patched: '2023-09-01T19:37:56.945Z'
+        id: 'npm:ms:20170412'
+        path: cloudinary > proxy-agent > https-proxy-agent > agent-base > debug > ms
+    - cloudinary > proxy-agent > socks-proxy-agent > agent-base > debug > ms:
+        patched: '2023-09-01T19:37:56.945Z'
+        id: 'npm:ms:20170412'
+        path: cloudinary > proxy-agent > socks-proxy-agent > agent-base > debug > ms
+    - cloudinary > proxy-agent > pac-proxy-agent > agent-base > debug > ms:
+        patched: '2023-09-01T19:37:56.945Z'
+        id: 'npm:ms:20170412'
+        path: cloudinary > proxy-agent > pac-proxy-agent > agent-base > debug > ms
+    - cloudinary > proxy-agent > pac-proxy-agent > http-proxy-agent > debug > ms:
+        patched: '2023-09-01T19:37:56.945Z'
+        id: 'npm:ms:20170412'
+        path: >-
+          cloudinary > proxy-agent > pac-proxy-agent > http-proxy-agent > debug
+          > ms
+    - cloudinary > proxy-agent > pac-proxy-agent > https-proxy-agent > debug > ms:
+        patched: '2023-09-01T19:37:56.945Z'
+        id: 'npm:ms:20170412'
+        path: >-
+          cloudinary > proxy-agent > pac-proxy-agent > https-proxy-agent > debug
+          > ms
+    - cloudinary > proxy-agent > pac-proxy-agent > get-uri > debug > ms:
+        patched: '2023-09-01T19:37:56.945Z'
+        id: 'npm:ms:20170412'
+        path: cloudinary > proxy-agent > pac-proxy-agent > get-uri > debug > ms
+    - cloudinary > proxy-agent > pac-proxy-agent > socks-proxy-agent > debug > ms:
+        patched: '2023-09-01T19:37:56.945Z'
+        id: 'npm:ms:20170412'
+        path: >-
+          cloudinary > proxy-agent > pac-proxy-agent > socks-proxy-agent > debug
+          > ms
+    - cloudinary > proxy-agent > pac-proxy-agent > http-proxy-agent > agent-base > debug > ms:
+        patched: '2023-09-01T19:37:56.945Z'
+        id: 'npm:ms:20170412'
+        path: >-
+          cloudinary > proxy-agent > pac-proxy-agent > http-proxy-agent >
+          agent-base > debug > ms
+    - cloudinary > proxy-agent > pac-proxy-agent > https-proxy-agent > agent-base > debug > ms:
+        patched: '2023-09-01T19:37:56.945Z'
+        id: 'npm:ms:20170412'
+        path: >-
+          cloudinary > proxy-agent > pac-proxy-agent > https-proxy-agent >
+          agent-base > debug > ms
+    - cloudinary > proxy-agent > pac-proxy-agent > socks-proxy-agent > agent-base > debug > ms:
+        patched: '2023-09-01T19:37:56.945Z'
+        id: 'npm:ms:20170412'
+        path: >-
+          cloudinary > proxy-agent > pac-proxy-agent > socks-proxy-agent >
+          agent-base > debug > ms
